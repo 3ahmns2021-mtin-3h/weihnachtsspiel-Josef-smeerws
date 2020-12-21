@@ -19,6 +19,9 @@ public class Timer : MonoBehaviour
         float minutes = Mathf.FloorToInt(timeInSec/60);
         float seconds = Mathf.FloorToInt(timeInSec%60);
 
+        Debug.Log("/60 " + " timeInSec " + timeInSec+ " timeInSec/60"+timeInSec/60);
+        Debug.Log("%60 " + " timeInSec " + timeInSec+ " timeInSec%60" + timeInSec%60);
+        
         if (timeInSec > 0)
         {
             timer.text = string.Format("{0:00}:{1:00}", minutes, seconds);
