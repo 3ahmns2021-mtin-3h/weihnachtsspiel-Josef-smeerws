@@ -4,10 +4,14 @@ using UnityEngine;
 
 public class Cat : MonoBehaviour
 {
+    Rigidbody2D rb;
+    public float speed = 5f;
+    public float movement = -4.0f;
+
     // Start is called before the first frame update
     void Start()
     {
-        Debug.Log("Cat");
+        rb = gameObject.GetComponent<Rigidbody2D>();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -18,6 +22,6 @@ public class Cat : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        rb.velocity = new Vector2(movement * speed, rb.velocity.y);
     }
 }

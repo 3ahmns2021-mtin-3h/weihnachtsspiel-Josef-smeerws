@@ -1,11 +1,13 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
+using TMPro;
 
 public class Player : MonoBehaviour
 {
-
     int countCollisions = 0;
+    public bool carringNut = false;
+    public int points = 0;
+    public GameObject feedbackJosefNut;
+    public TextMeshProUGUI scoreDisplay;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -17,15 +19,21 @@ public class Player : MonoBehaviour
         {
             countCollisions--;
         }
-        else if (collision.name == "Nut")
+        else if (collision.name.Contains("Nut") && !carringNut)
         {
-            Debug.Log("in if in Nut + 1 ");
-            countCollisions++;
+            Destroy(collision.gameObject);
+            carringNut = true;
+            feedbackJosefNut.SetActive(true);
         }
         else if (collision.name == "Nest")
         {
-            Debug.Log("in if in Nest + 1 ");
-            countCollisions++;
+            if (carringNut)
+            {
+                carringNut = false;
+                points++;
+                feedbackJosefNut.SetActive(false);
+                scoreDisplay.text = points.ToString();
+            }
         }
 
         Debug.Log("count Collisions " + countCollisions);
