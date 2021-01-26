@@ -11,13 +11,21 @@ public class Player : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.name == "Cat")
+        if (collision.name.Contains("Cat"))
         {
-            countCollisions--;   
+            if (carringNut)
+            {
+                carringNut = false;
+                feedbackJosefNut.SetActive(carringNut);
+            }
         }
-        else if(collision.name == "Bird")
+        else if(collision.name.Contains("Bird"))
         {
-            countCollisions--;
+            if (carringNut)
+            {
+                carringNut = false;
+                feedbackJosefNut.SetActive(carringNut);
+            }
         }
         else if (collision.name.Contains("Nut") && !carringNut)
         {
@@ -35,6 +43,7 @@ public class Player : MonoBehaviour
                 scoreDisplay.text = points.ToString();
             }
         }
+        
 
         Debug.Log("count Collisions " + countCollisions);
         Debug.Log("In Player, collide with " + collision);
